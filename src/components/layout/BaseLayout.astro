@@ -1,0 +1,62 @@
+---
+import '../../styles/global.css';
+
+interface Props {
+  title: string;
+  name: string;
+  description?: string;
+}
+
+const {
+  title,
+  name,
+  description = `Una sorpresa de cumpleaños hecha con amor para ${name}.`,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#121129" />
+    <meta name="description" content={description} />
+    <meta property="og:title" content={`${title}, ${name} ♡`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={`${title}, ${name} ♡`} />
+    <meta name="twitter:description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&family=Great+Vibes&display=swap"
+      rel="stylesheet"
+    />
+    <title>{title}, {name} ♡</title>
+  </head>
+  <body>
+    <div class="site-shell" id="top">
+      <div class="page-noise" aria-hidden="true"></div>
+      <div class="cursor-glow" aria-hidden="true"></div>
+      <div class="progress-bar" id="scroll-progress" aria-hidden="true"></div>
+      <div id="confetti-layer" class="confetti-layer" aria-hidden="true"></div>
+      <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+      <slot name="overlay" />
+
+      <slot name="header" />
+
+      <main>
+        <slot />
+      </main>
+
+      <slot name="footer" />
+    </div>
+
+    <script>
+      import '../../scripts/experience.js';
+    </script>
+  </body>
+</html>

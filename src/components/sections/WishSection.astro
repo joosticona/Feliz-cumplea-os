@@ -1,0 +1,55 @@
+---
+import SectionHeading from '../ui/SectionHeading.astro';
+import SectionDescription from '../ui/SectionDescription.astro';
+import Button from '../ui/Button.astro';
+import Cake from '../visual/Cake.astro';
+---
+
+<section class="section wish-section" id="pastel" aria-labelledby="wish-title">
+  <div class="container wish-layout">
+    <div class="wish-info reveal">
+      <SectionHeading
+        stepNumber="01"
+        kicker="PIDE UN DESEO"
+        id="wish-title"
+        title="Cierra los ojos."
+        subtitle="Pide algo bonito."
+      />
+      <SectionDescription>
+        Hay deseos que se soplan y otros que se cumplen poquito a poquito. Hoy quiero que ambos se
+        hagan realidad para ti.
+      </SectionDescription>
+      <div class="wish-instructions">
+        <span class="instruction-icon">✧</span>
+        <p>
+          <strong>Tu pequeño ritual</strong>
+          <br />
+          Toca el botón para apagar las velitas y pedir tu deseo.
+        </p>
+      </div>
+      <Button type="button" id="blow-candles" variant="primary">
+        Soplar las velitas <span aria-hidden="true">✧</span>
+      </Button>
+      <Button type="button" id="relight-candles" variant="reset" hidden>
+        ↻ Encender de nuevo
+      </Button>
+    </div>
+    <div class="cake-stage reveal" id="cake-stage">
+      <div class="cake-stars" aria-hidden="true">
+        <i>✧</i>
+        <i>✦</i>
+        <i>✧</i>
+        <i>⋆</i>
+        <i>✧</i>
+      </div>
+      <div class="cake-aura" aria-hidden="true"></div>
+      <Cake candleCount={5} />
+      <div class="wish-result" id="wish-result" aria-live="polite">
+        <span>✨</span>
+        <strong>¡Deseo enviado al universo!</strong>
+        <small>Que la vida te regale todo lo bonito que mereces.</small>
+      </div>
+      <div class="stage-caption">HECHO DE DULZURA, ESTRELLITAS Y AMOR</div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,35 @@
+---
+interface Props {
+  name: string;
+}
+
+const { name } = Astro.props;
+---
+
+<div class="hero-visual" aria-label="Ilustración de una luna y un corazón entre estrellas">
+  <div class="orb-halo halo-outer"></div>
+  <div class="orb-halo halo-inner"></div>
+  <div class="orb-main">
+    <span class="orb-text-small">mi universo favorito</span>
+    <span class="orb-heart" aria-hidden="true">
+      ♡
+    </span>
+    <span class="orb-name">{name}</span>
+    <span class="orb-text-bottom">eres tú ✦</span>
+  </div>
+  <div class="visual-sticker sticker-1">
+    <span>✧</span> Eres magia
+  </div>
+  <div class="visual-sticker sticker-2">
+    <span>♡</span> Mi persona favorita
+  </div>
+  <span class="float-symbol float-1" aria-hidden="true">
+    ✳
+  </span>
+  <span class="float-symbol float-2" aria-hidden="true">
+    ✧
+  </span>
+  <span class="float-symbol float-3" aria-hidden="true">
+    ✦
+  </span>
+</div>

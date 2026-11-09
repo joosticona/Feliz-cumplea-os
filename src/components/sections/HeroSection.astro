@@ -1,0 +1,47 @@
+---
+import Button from '../ui/Button.astro';
+import HeroVisual from '../visual/HeroVisual.astro';
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  name: string;
+  heroText: string;
+}
+
+const { eyebrow, title, name, heroText } = Astro.props;
+---
+
+<section class="hero container" id="inicio" aria-labelledby="hero-title">
+  <div class="hero-sky" aria-hidden="true" id="hero-stars"></div>
+  <div class="hero-copy">
+    <div class="hero-eyebrow">
+      <span class="eyebrow-spark">✦</span> {eyebrow}
+    </div>
+    <p class="hero-pretitle">Hoy es un día para recordar...</p>
+    <h2 id="hero-title">
+      {title}
+      <span class="hero-name">
+        {name}
+        <span class="hero-period">.</span>
+      </span>
+    </h2>
+    <p class="hero-description">{heroText}</p>
+    <div class="hero-actions">
+      <Button as="a" href="#pastel" variant="primary">
+        Comenzar la magia <span aria-hidden="true">↗</span>
+      </Button>
+      <Button as="a" href="#carta" variant="text">
+        Tengo una carta para ti <span aria-hidden="true">→</span>
+      </Button>
+    </div>
+    <div class="hero-footnote">
+      <span class="footnote-heart">♥</span> Hecho con muchísimo amor, solo para ti
+    </div>
+  </div>
+  <HeroVisual name={name} />
+  <a href="#pastel" class="scroll-cue" aria-label="Desplazarse al pastel">
+    <span>DESLIZA PARA DESCUBRIR</span>
+    <span class="scroll-line"></span>
+  </a>
+</section>

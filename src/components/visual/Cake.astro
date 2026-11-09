@@ -1,0 +1,34 @@
+---
+import Candle from './Candle.astro';
+
+interface Props {
+  candleCount?: number;
+}
+
+const { candleCount = 5 } = Astro.props;
+---
+
+<div class="cake-art" role="img" aria-label="Pastel lila de cumpleaños con cinco velas encendidas">
+  <div class="candles" id="candles">
+    {Array.from({ length: candleCount }).map((_, i) => (
+      <Candle index={i + 1} />
+    ))}
+  </div>
+  <div class="cake-top">
+    <span class="sprinkle sp1"></span>
+    <span class="sprinkle sp2"></span>
+    <span class="sprinkle sp3"></span>
+    <span class="sprinkle sp4"></span>
+    <span class="sprinkle sp5"></span>
+  </div>
+  <div class="cake-layer cake-layer-top">
+    <div class="icing-drips"></div>
+    <span class="cake-highlight"></span>
+  </div>
+  <div class="cake-layer cake-layer-bottom">
+    <div class="icing-drips bottom-drips"></div>
+    <span class="cake-highlight"></span>
+  </div>
+  <div class="cake-plate"></div>
+  <div class="cake-shadow"></div>
+</div>

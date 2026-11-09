@@ -1,0 +1,50 @@
+---
+import Button from '../ui/Button.astro';
+
+interface Props {
+  name: string;
+}
+
+const { name } = Astro.props;
+---
+
+<div
+  class="welcome-overlay"
+  id="welcome-overlay"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="welcome-title"
+>
+  <div class="welcome-sparkle s1" aria-hidden="true">
+    ✧
+  </div>
+  <div class="welcome-sparkle s2" aria-hidden="true">
+    ✦
+  </div>
+  <div class="welcome-sparkle s3" aria-hidden="true">
+    ⋆
+  </div>
+  <div class="welcome-sparkle s4" aria-hidden="true">
+    ✧
+  </div>
+  <div class="welcome-inner">
+    <div class="welcome-seal" aria-hidden="true">
+      <span>♡</span>
+    </div>
+    <p class="overline">UN REGALO ESPECIAL</p>
+    <h1 id="welcome-title">
+      Tengo algo <em>para ti,</em>
+      <br />
+      <span>{name}.</span>
+    </h1>
+    <p class="welcome-copy">
+      Lo hice pensando en tu sonrisa. Ponte cómoda, la magia está a punto de comenzar.
+    </p>
+    <Button type="button" id="start-experience" variant="primary" class="welcome-button">
+      Abrir mi sorpresa <span aria-hidden="true">↗</span>
+    </Button>
+    <p class="welcome-note">
+      <span aria-hidden="true">♫</span> Mejor con sonido · Puedes silenciarlo cuando quieras
+    </p>
+  </div>
+</div>

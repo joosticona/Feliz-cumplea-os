@@ -1,0 +1,18 @@
+---
+interface Props {
+  name: string;
+}
+
+const { name } = Astro.props;
+---
+
+<div class="letter-envelope" id="letter-envelope" aria-hidden="true">
+  <div class="envelope-letter">
+    <span>Para {name},</span>
+    <b>con amor ♡</b>
+  </div>
+  <div class="envelope-back"></div>
+  <div class="envelope-flap"></div>
+  <div class="envelope-front"></div>
+  <div class="envelope-seal">♡</div>
+</div>

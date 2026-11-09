@@ -1,0 +1,75 @@
+---
+interface Props {
+  as?: 'button' | 'a';
+  href?: string;
+  variant?: 'primary' | 'text' | 'reset' | 'sound';
+  class?: string;
+  id?: string;
+  type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
+  hidden?: boolean;
+  'aria-label'?: string;
+  'aria-pressed'?: 'true' | 'false' | boolean;
+  'aria-expanded'?: 'true' | 'false' | boolean;
+  'aria-controls'?: string;
+}
+
+const {
+  as = 'button',
+  href,
+  variant = 'primary',
+  class: className = '',
+  id,
+  type = 'button',
+  disabled = false,
+  hidden,
+  'aria-label': ariaLabel,
+  'aria-pressed': ariaPressed,
+  'aria-expanded': ariaExpanded,
+  'aria-controls': ariaControls,
+  ...rest
+} = Astro.props;
+
+const variantClass =
+  variant === 'primary'
+    ? 'button button-primary'
+    : variant === 'text'
+      ? 'button button-text'
+      : variant === 'reset'
+        ? 'reset-link'
+        : variant === 'sound'
+          ? 'sound-toggle'
+          : '';
+
+const classes = [variantClass, className].filter(Boolean).join(' ');
+---
+
+{as === 'a' ? (
+  <a
+    href={href}
+    class={classes}
+    id={id}
+    aria-label={ariaLabel}
+    aria-pressed={ariaPressed !== undefined ? String(ariaPressed) : undefined}
+    aria-expanded={ariaExpanded !== undefined ? String(ariaExpanded) : undefined}
+    aria-controls={ariaControls}
+    {...rest}
+  >
+    <slot />
+  </a>
+) : (
+  <button
+    type={type}
+    class={classes}
+    id={id}
+    disabled={disabled}
+    hidden={hidden}
+    aria-label={ariaLabel}
+    aria-pressed={ariaPressed !== undefined ? String(ariaPressed) : undefined}
+    aria-expanded={ariaExpanded !== undefined ? String(ariaExpanded) : undefined}
+    aria-controls={ariaControls}
+    {...rest}
+  >
+    <slot />
+  </button>
+)}

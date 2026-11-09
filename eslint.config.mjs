@@ -1,6 +1,7 @@
 import js from '@eslint/js';
 import eslintPluginAstro from 'eslint-plugin-astro';
 import eslintConfigPrettier from 'eslint-config-prettier';
+import tseslint from 'typescript-eslint';
 import globals from 'globals';
 
 export default [
@@ -23,5 +24,14 @@ export default [
     },
   },
   ...eslintPluginAstro.configs['flat/recommended'],
+  {
+    files: ['**/*.astro'],
+    languageOptions: {
+      parserOptions: {
+        parser: tseslint.parser,
+        extraFileExtensions: ['.astro'],
+      },
+    },
+  },
   eslintConfigPrettier,
 ];

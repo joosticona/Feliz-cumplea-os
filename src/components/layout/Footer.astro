@@ -1,0 +1,18 @@
+---
+interface Props {
+  name: string;
+  from: string;
+}
+
+const { name, from } = Astro.props;
+---
+
+<footer class="footer container">
+  <span class="footer-brand">
+    para {name} <b>♡</b>
+  </span>
+  <span>{from}</span>
+  <a href="#top" aria-label="Volver arriba">
+    Volver a las estrellas ↑
+  </a>
+</footer>

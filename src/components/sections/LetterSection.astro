@@ -1,0 +1,51 @@
+---
+import SectionHeading from '../ui/SectionHeading.astro';
+import SectionDescription from '../ui/SectionDescription.astro';
+import Button from '../ui/Button.astro';
+import LetterEnvelope from '../visual/LetterEnvelope.astro';
+import LetterPaper from '../visual/LetterPaper.astro';
+
+interface Props {
+  name: string;
+  letter: string[];
+  signOff: string;
+}
+
+const { name, letter, signOff } = Astro.props;
+---
+
+<section class="section letter-section" id="carta" aria-labelledby="letter-title">
+  <div class="container letter-layout">
+    <div class="letter-intro reveal">
+      <SectionHeading
+        stepNumber="03"
+        kicker="DE MÍ, PARA TI"
+        id="letter-title"
+        title="Hay cosas que"
+        subtitle="se dicen con el corazón."
+      />
+      <SectionDescription>
+        Y hay palabras que se guardan para alguien realmente especial. Estas son tuyas,
+        {name}.
+      </SectionDescription>
+      <div class="letter-mini-note">
+        Una carta que siempre podrás volver a leer. <span>♡</span>
+      </div>
+    </div>
+    <div class="letter-interaction reveal">
+      <LetterEnvelope name={name} />
+      <Button
+        variant="primary"
+        class="envelope-button"
+        id="open-letter"
+        type="button"
+        aria-expanded="false"
+        aria-controls="letter-paper"
+      >
+        Abrir mi carta <span aria-hidden="true">↗</span>
+      </Button>
+      <p class="envelope-hint">Guardé unas palabras especiales para ti</p>
+    </div>
+  </div>
+  <LetterPaper name={name} letter={letter} signOff={signOff} />
+</section>

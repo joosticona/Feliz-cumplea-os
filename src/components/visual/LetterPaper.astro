@@ -1,0 +1,29 @@
+---
+interface Props {
+  name: string;
+  letter: string[];
+  signOff: string;
+}
+
+const { name, letter, signOff } = Astro.props;
+---
+
+<div class="container letter-paper-container" id="letter-paper" hidden>
+  <article class="letter-paper" tabindex="-1" aria-label={`Carta de cumpleaños para ${name}`}>
+    <div class="letter-paper-decoration" aria-hidden="true">
+      ✧
+    </div>
+    <p class="letter-date">EN TU DÍA ESPECIAL</p>
+    <h3>Para mi persona favorita,</h3>
+    {letter.map((paragraph, i) => (
+      <p class={i === 0 ? 'letter-salutation' : ''}>{paragraph}</p>
+    ))}
+    <p class="letter-signature">{signOff}</p>
+    <span class="letter-corner" aria-hidden="true">
+      ♡
+    </span>
+    <button type="button" class="letter-close" id="close-letter">
+      Cerrar carta ↑
+    </button>
+  </article>
+</div>

@@ -1,0 +1,42 @@
+---
+interface Props {
+  number: string;
+  emoji: string;
+  title: string;
+  short: string;
+  full: string;
+  index: number;
+}
+
+const { number, emoji, title, short, full, index } = Astro.props;
+---
+
+<button
+  type="button"
+  class="reason-card reveal"
+  data-reason-card
+  aria-pressed="false"
+  aria-label={`Descubrir razón ${number}: ${title}`}
+  style={`--card-index:${index}`}
+>
+  <span class="reason-card-inner">
+    <span class="reason-face reason-front">
+      <span class="reason-top">
+        <span>{number} / 06</span>
+        <span class="reason-plus">↗</span>
+      </span>
+      <span class="reason-icon" aria-hidden="true">
+        {emoji}
+      </span>
+      <span class="reason-bottom">
+        <strong>{title}</strong>
+        <small>{short}</small>
+      </span>
+    </span>
+    <span class="reason-face reason-back">
+      <span class="back-label">UNA COSITA QUE AMO DE TI</span>
+      <span class="reason-back-text">{full}</span>
+      <span class="back-bottom">♡ &nbsp; Toca para volver</span>
+    </span>
+  </span>
+</button>

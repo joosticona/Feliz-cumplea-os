@@ -1,0 +1,12 @@
+---
+interface Props {
+  index: number;
+}
+
+const { index } = Astro.props;
+---
+
+<div class={`candle candle-${index}`}>
+  <span class="flame"></span>
+  <span class="wick"></span>
+</div>

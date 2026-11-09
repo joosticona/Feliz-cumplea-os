@@ -34,6 +34,20 @@ window.addEventListener('scroll', handleScroll, { passive: true });
 window.addEventListener('resize', handleScroll);
 handleScroll();
 
+// Encabezado sticky con efecto al desplazarse.
+const siteHeader = $('#site-header');
+function handleHeader() {
+  if (siteHeader) {
+    if (window.scrollY > 20) {
+      siteHeader.classList.add('is-scrolled');
+    } else {
+      siteHeader.classList.remove('is-scrolled');
+    }
+  }
+}
+window.addEventListener('scroll', handleHeader, { passive: true });
+handleHeader();
+
 if ('IntersectionObserver' in window) {
   const revealObserver = new IntersectionObserver(
     (entries, observer) => {
@@ -304,8 +318,12 @@ wishForm.addEventListener('submit', (event) => {
   const pill = document.createElement('span');
   pill.className = 'wish-pill';
   const smallStar = document.createElement('span');
+  smallStar.setAttribute('aria-hidden', 'true');
   smallStar.textContent = '✦';
-  pill.append(smallStar, document.createTextNode(wish));
+  const textSpan = document.createElement('span');
+  textSpan.className = 'wish-text';
+  textSpan.textContent = wish;
+  pill.append(smallStar, textSpan);
   wishList.prepend(pill);
   while (wishList.children.length > 8) wishList.lastElementChild?.remove();
   const star = document.createElement('i');

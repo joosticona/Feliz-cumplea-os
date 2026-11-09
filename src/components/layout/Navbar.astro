@@ -1,0 +1,51 @@
+---
+import Button from '../ui/Button.astro';
+
+interface Props {
+  name: string;
+}
+
+const { name } = Astro.props;
+---
+
+<header class="nav-wrap" id="site-header">
+  <nav class="navbar container" aria-label="Navegación principal">
+    <a class="brand" href="#top" aria-label="Volver al inicio">
+      para <span>{name}</span>
+      <b>♡</b>
+    </a>
+    <div class="nav-links" id="nav-links">
+      <a href="#pastel">El deseo</a>
+      <a href="#razones">Mis razones</a>
+      <a href="#carta">Tu carta</a>
+    </div>
+    <Button variant="sound" id="sound-toggle" aria-label="Activar música" aria-pressed="false">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path
+          d="M9 9 5 9 5 15 9 15 13 19 13 5 9 9Z"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linejoin="round"
+        ></path>
+        <path
+          class="sound-waves"
+          d="M16 9a5 5 0 0 1 0 6m2.4-9a8.5 8.5 0 0 1 0 12"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+        ></path>
+        <path
+          class="sound-slash"
+          d="M17 9 22 15m0-6-5 6"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+        ></path>
+      </svg>
+      <span id="sound-label">Música</span>
+    </Button>
+  </nav>
+</header>

@@ -1,0 +1,31 @@
+---
+import Button from '../ui/Button.astro';
+import GiftBox from '../visual/GiftBox.astro';
+
+interface Props {
+  name: string;
+}
+
+const { name } = Astro.props;
+---
+
+<section class="final-section" id="regalo" aria-labelledby="final-title">
+  <div class="final-glow" aria-hidden="true"></div>
+  <div class="container final-inner reveal">
+    <p class="section-kicker">Y ANTES DE TERMINAR...</p>
+    <GiftBox />
+    <h2 class="section-heading" id="final-title">
+      Un último <em>regalito.</em>
+    </h2>
+    <p class="final-copy">Porque una sorpresa nunca es suficiente cuando se trata de ti.</p>
+    <Button variant="primary" id="open-gift" type="button">
+      Abrir regalo <span aria-hidden="true">♡</span>
+    </Button>
+    <div class="gift-message" id="gift-message" hidden aria-live="polite">
+      <span class="gift-message-star">✦</span>
+      <h3>Mi regalo favorito es compartir la vida contigo.</h3>
+      <p>Feliz cumpleaños, {name}. Que nunca te falten motivos para brillar.</p>
+      <strong>Te amo ♡</strong>
+    </div>
+  </div>
+</section>

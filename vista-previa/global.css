@@ -222,7 +222,9 @@ button:disabled {
   place-items: center;
   padding: 24px;
   text-align: center;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
   transition:
     opacity 1s ease,
     visibility 1s ease;
@@ -347,19 +349,34 @@ button:disabled {
 
 /* Navegación */
 .nav-wrap {
-  position: absolute;
+  position: sticky;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 20;
+  z-index: 50;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  background: rgba(16, 16, 39, 0.75);
+  transition:
+    background 0.3s var(--ease),
+    box-shadow 0.3s var(--ease),
+    border-color 0.3s var(--ease);
+}
+.nav-wrap.is-scrolled {
+  background: rgba(16, 16, 39, 0.9);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
 }
 .navbar {
-  min-height: 97px;
+  min-height: 84px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
   border-bottom: 1px solid rgba(219, 207, 255, 0.1);
+  transition: min-height 0.3s var(--ease);
+}
+.nav-wrap.is-scrolled .navbar {
+  min-height: 70px;
 }
 .brand {
   font: 400 23px/1 var(--display);
@@ -429,13 +446,12 @@ button:disabled {
 
 /* Hero */
 .hero {
-  min-height: min(850px, 100svh);
-  min-height: max(760px, 100svh);
+  min-height: clamp(620px, 90svh, 920px);
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
   align-items: center;
-  padding-top: 125px;
-  padding-bottom: 110px;
+  padding-top: 40px;
+  padding-bottom: 90px;
   position: relative;
 }
 .hero::before {
@@ -701,7 +717,7 @@ button:disabled {
 }
 .hero-sky {
   position: absolute;
-  inset: 0 -80px 0;
+  inset: 0;
   overflow: hidden;
   pointer-events: none;
 }
@@ -908,10 +924,12 @@ button:disabled {
   animation-delay: -3s;
 }
 .cake-art {
+  --cake-scale: 1;
+  --cake-y: 32px;
   width: 370px;
   height: 385px;
   position: relative;
-  transform: translateY(32px);
+  transform: translateY(var(--cake-y)) scale(var(--cake-scale));
   filter: drop-shadow(0 40px 25px rgba(12, 9, 31, 0.45));
 }
 .cake-shadow {
@@ -1129,6 +1147,21 @@ button:disabled {
   transition:
     opacity 0.25s,
     transform 0.3s;
+}
+.wick {
+  position: relative;
+}
+.cake-stage.candles-out .wick::after {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  width: 4px;
+  height: 12px;
+  background: radial-gradient(circle, rgba(235, 225, 255, 0.75), transparent 70%);
+  border-radius: 50%;
+  transform: translateX(-50%);
+  animation: smokeDrift 2s ease-out forwards;
 }
 .cake-stage.candles-out .cake-art {
   animation: cakeCelebrate 1s var(--ease) both;
@@ -1433,20 +1466,24 @@ button:disabled {
   margin: 23px auto 0;
 }
 .wish-pill {
-  font-size: 11px;
-  display: inline-block;
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
   color: #eedfff;
   background: rgba(207, 175, 255, 0.12);
-  border: 1px solid rgba(216, 195, 255, 0.22);
+  border: 1px solid rgba(216, 195, 255, 0.25);
   border-radius: 999px;
-  padding: 9px 15px;
+  padding: 8px 16px;
   animation: wishAppear 0.6s var(--ease) both;
   max-width: 100%;
   overflow-wrap: anywhere;
+  backdrop-filter: blur(8px);
 }
-.wish-pill span {
-  margin-right: 5px;
+.wish-pill [aria-hidden='true'] {
   color: #f6c8e1;
+  font-size: 13px;
+  line-height: 1;
 }
 .shooting-star {
   width: 6px;
@@ -1663,20 +1700,33 @@ button:disabled {
 }
 .letter-corner {
   position: absolute;
-  right: 40px;
-  bottom: 32px;
-  font-size: 24px;
+  right: 28px;
+  bottom: 24px;
+  font-size: 26px;
   color: #b687c6;
+  opacity: 0.45;
+  pointer-events: none;
 }
 .letter-close {
-  display: block;
-  border: 0;
-  border-bottom: 1px solid #ac8dbe;
-  background: none;
-  padding: 6px 0;
-  margin-top: 25px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin: 32px auto 0;
+  padding: 10px 24px;
+  border-radius: 999px;
+  border: 1px solid rgba(172, 141, 190, 0.35);
+  background: rgba(172, 141, 190, 0.1);
   color: #775590;
   font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s var(--ease);
+}
+.letter-close:hover {
+  background: rgba(172, 141, 190, 0.22);
+  color: #553470;
+  transform: translateY(-2px);
 }
 
 /* Regalo final */
@@ -1968,16 +2018,30 @@ button:disabled {
 }
 @keyframes cakeCelebrate {
   20% {
-    transform: translateY(24px) rotate(-2deg);
+    transform: translateY(calc(var(--cake-y, 32px) - 8px)) scale(var(--cake-scale, 1)) rotate(-2deg);
   }
   40% {
-    transform: translateY(18px) rotate(2deg);
+    transform: translateY(calc(var(--cake-y, 32px) - 14px)) scale(var(--cake-scale, 1)) rotate(2deg);
   }
   70% {
-    transform: translateY(26px) rotate(-1deg);
+    transform: translateY(calc(var(--cake-y, 32px) - 6px)) scale(var(--cake-scale, 1)) rotate(-1deg);
   }
   100% {
-    transform: translateY(32px);
+    transform: translateY(var(--cake-y, 32px)) scale(var(--cake-scale, 1));
+  }
+}
+@keyframes smokeDrift {
+  0% {
+    opacity: 0.85;
+    transform: translateX(-50%) scale(1) translateY(0);
+  }
+  50% {
+    opacity: 0.45;
+    transform: translateX(calc(-50% + 5px)) scale(2) translateY(-14px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(calc(-50% - 6px)) scale(3.5) translateY(-28px);
   }
 }
 @keyframes wishAppear {
@@ -2056,7 +2120,7 @@ button:disabled {
   }
   .hero {
     grid-template-columns: 1fr;
-    padding-top: 165px;
+    padding-top: 48px;
     min-height: auto;
     padding-bottom: 90px;
     text-align: center;
@@ -2162,7 +2226,7 @@ button:disabled {
     margin-bottom: 18px;
   }
   .navbar {
-    min-height: 70px;
+    min-height: 64px;
   }
   .brand {
     font-size: 21px;
@@ -2175,8 +2239,8 @@ button:disabled {
     min-height: 38px;
   }
   .hero {
-    padding-top: 115px;
-    padding-bottom: 80px;
+    padding-top: 35px;
+    padding-bottom: 70px;
   }
   .hero-eyebrow {
     font-size: 9px;
@@ -2184,47 +2248,47 @@ button:disabled {
     line-height: 1.8;
   }
   .hero-pretitle {
-    margin-top: 32px;
+    margin-top: 26px;
     font-size: 15px;
   }
   .hero h2 {
-    font-size: clamp(50px, 12.4vw, 83px);
+    font-size: clamp(48px, 12vw, 80px);
     line-height: 1.07;
   }
   .hero-name {
     font-size: 1.53em;
   }
   .hero-description {
-    margin-top: 19px;
+    margin-top: 18px;
     font-size: 13px;
     max-width: 385px;
   }
   .hero-actions {
-    gap: 6px 15px;
+    gap: 8px 15px;
   }
   .button {
-    min-height: 52px;
+    min-height: 50px;
     font-size: 12px;
     padding-inline: 19px;
-    gap: 13px;
+    gap: 12px;
   }
   .hero-actions .button-text {
-    min-height: 46px;
+    min-height: 44px;
   }
   .hero-footnote {
-    margin-top: 27px;
+    margin-top: 25px;
   }
   .hero-visual {
-    margin-top: 42px;
-    width: min(100%, 400px);
+    margin-top: 35px;
+    width: min(100%, 390px);
   }
   .sticker-1 {
-    right: -4px;
-    top: 15%;
+    right: 4px;
+    top: 12%;
   }
   .sticker-2 {
-    left: -5px;
-    bottom: 17%;
+    left: 4px;
+    bottom: 14%;
   }
   .visual-sticker {
     font-size: 9px;
@@ -2261,13 +2325,13 @@ button:disabled {
     border-radius: 190px 190px 16px 16px;
   }
   .cake-art {
-    transform: translateY(23px) scale(0.78);
+    --cake-scale: 0.78;
+    --cake-y: 20px;
     transform-origin: center center;
     margin-block: -25px;
   }
   .cake-stage.candles-out .cake-art {
-    animation: none;
-    transform: translateY(23px) scale(0.78);
+    animation: cakeCelebrate 1s var(--ease) both;
   }
   .wish-result {
     top: 9%;
@@ -2319,6 +2383,7 @@ button:disabled {
     flex-direction: column;
     align-items: stretch;
     padding: 9px;
+    gap: 10px;
   }
   .wish-form input {
     height: 48px;
@@ -2335,18 +2400,19 @@ button:disabled {
     min-height: 440px;
   }
   .letter-paper {
-    padding: 65px 31px;
+    padding: 60px 24px;
+    text-align: center;
   }
   .letter-paper h3 {
-    font-size: 32px;
+    font-size: 30px;
   }
   .letter-paper p:not(.letter-date) {
-    font-size: 13px;
-    line-height: 1.9;
+    font-size: 13.5px;
+    line-height: 1.85;
   }
   .letter-corner {
-    right: 25px;
-    bottom: 18px;
+    right: 20px;
+    bottom: 16px;
   }
   .final-section {
     padding: 90px 0 100px;
@@ -2382,43 +2448,73 @@ button:disabled {
     right: 5%;
   }
 }
+@media (max-width: 520px) {
+  .reasons-grid {
+    grid-template-columns: 1fr;
+    max-width: 380px;
+    margin-inline: auto;
+    gap: 16px;
+  }
+  .reason-card {
+    height: 200px;
+  }
+  .reason-face {
+    padding: 20px 24px;
+  }
+  .reason-icon {
+    font-size: 56px;
+  }
+  .reason-bottom strong {
+    font-size: 24px;
+  }
+  .reason-back-text {
+    font-size: 17.5px;
+    line-height: 1.45;
+  }
+}
 @media (max-width: 380px) {
   .container {
-    width: calc(100% - 30px);
+    width: calc(100% - 26px);
   }
   .hero h2 {
-    font-size: 46px;
+    font-size: 44px;
   }
   .hero-name {
     font-size: 1.54em;
   }
+  .reason-card {
+    height: 195px;
+  }
   .reason-face {
-    padding: 13px;
+    padding: 16px 20px;
   }
   .reason-icon {
-    font-size: 55px;
+    font-size: 50px;
   }
   .reason-bottom strong {
-    font-size: 20px;
-  }
-  .reason-card {
-    height: 220px;
+    font-size: 22px;
   }
   .reason-back-text {
-    font-size: 15px;
+    font-size: 15.5px;
+    line-height: 1.4;
   }
   .cake-art {
-    transform: translateY(23px) scale(0.69);
+    --cake-scale: 0.69;
+    --cake-y: 18px;
   }
   .cake-stage.candles-out .cake-art {
-    transform: translateY(23px) scale(0.69);
+    animation: cakeCelebrate 1s var(--ease) both;
   }
   .cake-stage {
-    min-height: 395px;
+    min-height: 380px;
+  }
+  .letter-interaction {
+    padding-top: 65px;
+    min-height: 400px;
   }
   .letter-envelope {
-    transform: scale(0.89);
-    margin-top: -5px;
+    transform: scale(0.85);
+    margin: 0 auto 32px;
   }
 }
 @media (prefers-reduced-motion: reduce) {

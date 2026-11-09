@@ -1,0 +1,51 @@
+---
+import SectionHeading from '../ui/SectionHeading.astro';
+import SectionDescription from '../ui/SectionDescription.astro';
+import ReasonCard from '../visual/ReasonCard.astro';
+
+interface Reason {
+  number: string;
+  emoji: string;
+  title: string;
+  short: string;
+  full: string;
+}
+
+interface Props {
+  reasons: Reason[];
+}
+
+const { reasons } = Astro.props;
+---
+
+<section class="section reasons-section" id="razones" aria-labelledby="reasons-title">
+  <div class="container">
+    <div class="section-topline reveal">
+      <p class="section-kicker">
+        <span>02 /</span> PEQUEÑOS DETALLES
+      </p>
+      <span class="topline-deco">✧ &nbsp; ✧ &nbsp; ✧</span>
+    </div>
+    <div class="reasons-heading reveal">
+      <SectionHeading id="reasons-title" title="Hay mil razones." subtitle="Estas son algunas." />
+      <SectionDescription>
+        Cada tarjeta guarda algo que me encanta de ti. Tócalas y descubre lo que hay detrás.
+      </SectionDescription>
+    </div>
+    <div class="reasons-grid">
+      {reasons.map((reason, index) => (
+        <ReasonCard
+          number={reason.number}
+          emoji={reason.emoji}
+          title={reason.title}
+          short={reason.short}
+          full={reason.full}
+          index={index}
+        />
+      ))}
+    </div>
+    <div class="reasons-footer reveal">
+      <span class="little-star">✷</span> Y todavía me faltan muchísimas por descubrir...
+    </div>
+  </div>
+</section>

@@ -1,0 +1,29 @@
+---
+interface Props {
+  kicker?: string;
+  stepNumber?: string;
+  id?: string;
+  title: string;
+  subtitle?: string;
+  class?: string;
+}
+
+const { kicker, stepNumber, id, title, subtitle, class: className = '' } = Astro.props;
+---
+
+<div class={className || undefined}>
+  {(kicker || stepNumber) && (
+    <p class="section-kicker">
+      {stepNumber && <span>{stepNumber} /</span>} {kicker}
+    </p>
+  )}
+  <h2 class="section-heading" id={id}>
+    {title}
+    {subtitle && (
+      <>
+        <br />
+        <em>{subtitle}</em>
+      </>
+    )}
+  </h2>
+</div>

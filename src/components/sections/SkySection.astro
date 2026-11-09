@@ -1,0 +1,44 @@
+---
+import SectionHeading from '../ui/SectionHeading.astro';
+import SectionDescription from '../ui/SectionDescription.astro';
+import Button from '../ui/Button.astro';
+---
+
+<section class="section sky-section" id="deseo" aria-labelledby="sky-title">
+  <div class="sky-starfield" id="wish-sky" aria-hidden="true"></div>
+  <div class="container sky-content reveal">
+    <div class="sky-symbol" aria-hidden="true">
+      ✧
+    </div>
+    <SectionHeading
+      kicker="UN PEQUEÑO RINCÓN DEL UNIVERSO"
+      id="sky-title"
+      title="Escribe un deseo."
+      subtitle="Yo pongo las estrellas."
+    />
+    <SectionDescription>
+      Puede ser algo enorme o algo pequeñito. Lo importante es que sea tuyo.
+    </SectionDescription>
+    <form class="wish-form" id="wish-form">
+      <label class="sr-only" for="wish-input">
+        Tu deseo
+      </label>
+      <input
+        id="wish-input"
+        name="wish"
+        type="text"
+        maxlength="100"
+        autocomplete="off"
+        placeholder="Este año deseo..."
+        required
+      />
+      <Button variant="primary" type="submit">
+        Lanzar deseo <span aria-hidden="true">↗</span>
+      </Button>
+    </form>
+    <div class="sky-hint" id="sky-hint">
+      Los deseos se guardan en este cielo durante tu visita. ♡
+    </div>
+    <div class="wishes-list" id="wishes-list" aria-live="polite"></div>
+  </div>
+</section>
