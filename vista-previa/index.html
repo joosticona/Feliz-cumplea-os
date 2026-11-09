@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#121129" />
+    <meta name="description" content="Una sorpresa de cumpleaños hecha con amor para Anahí." />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&family=Great+Vibes&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./global.css" />
+    <title>Feliz cumpleaños, Anahí ♡</title>
+  </head>
+  <body>
+    <div class="site-shell" id="top">
+      <div class="page-noise" aria-hidden="true"></div>
+      <div class="cursor-glow" aria-hidden="true"></div>
+      <div class="progress-bar" id="scroll-progress" aria-hidden="true"></div>
+      <div id="confetti-layer" class="confetti-layer" aria-hidden="true"></div>
+      <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+      <div class="welcome-overlay" id="welcome-overlay" role="dialog" aria-modal="true" aria-labelledby="welcome-title">
+        <div class="welcome-sparkle s1" aria-hidden="true">✧</div>
+        <div class="welcome-sparkle s2" aria-hidden="true">✦</div>
+        <div class="welcome-sparkle s3" aria-hidden="true">⋆</div>
+        <div class="welcome-sparkle s4" aria-hidden="true">✧</div>
+        <div class="welcome-inner">
+          <div class="welcome-seal" aria-hidden="true"><span>♡</span></div>
+          <p class="overline">UN REGALO ESPECIAL</p>
+          <h1 id="welcome-title">Tengo algo <em>para ti,</em><br /><span>Anahí.</span></h1>
+          <p class="welcome-copy">Lo hice pensando en tu sonrisa. Ponte cómoda, la magia está a punto de comenzar.</p>
+          <button type="button" id="start-experience" class="button button-primary welcome-button">
+            Abrir mi sorpresa <span aria-hidden="true">↗</span>
+          </button>
+          <p class="welcome-note"><span aria-hidden="true">♫</span> Mejor con sonido · Puedes silenciarlo cuando quieras</p>
+        </div>
+      </div>
+
+      <header class="nav-wrap" id="site-header">
+        <nav class="navbar container" aria-label="Navegación principal">
+          <a class="brand" href="#top" aria-label="Volver al inicio">para <span>Anahí</span><b>♡</b></a>
+          <div class="nav-links" id="nav-links">
+            <a href="#pastel">El deseo</a>
+            <a href="#razones">Mis razones</a>
+            <a href="#carta">Tu carta</a>
+          </div>
+          <button class="sound-toggle" id="sound-toggle" type="button" aria-label="Activar música" aria-pressed="false">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 9 5 9 5 15 9 15 13 19 13 5 9 9Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path class="sound-waves" d="M16 9a5 5 0 0 1 0 6m2.4-9a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path class="sound-slash" d="M17 9 22 15m0-6-5 6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+            <span id="sound-label">Música</span>
+          </button>
+        </nav>
+      </header>
+
+      <main>
+        <section class="hero container" id="inicio" aria-labelledby="hero-title">
+          <div class="hero-sky" aria-hidden="true" id="hero-stars"></div>
+          <div class="hero-copy">
+            <div class="hero-eyebrow"><span class="eyebrow-spark">✦</span> PARA LA PERSONA QUE HACE MI MUNDO MÁS BONITO</div>
+            <p class="hero-pretitle">Hoy es un día para recordar...</p>
+            <h2 id="hero-title">Feliz cumpleaños<span class="hero-name">Anahí<span class="hero-period">.</span></span></h2>
+            <p class="hero-description">Si pudiera pedir un deseo hoy, sería verte sonreír así de bonito todos los días. Esta pequeña sorpresa es solo para ti.</p>
+            <div class="hero-actions">
+              <a href="#pastel" class="button button-primary">Comenzar la magia <span aria-hidden="true">↗</span></a>
+              <a href="#carta" class="button button-text">Tengo una carta para ti <span aria-hidden="true">→</span></a>
+            </div>
+            <div class="hero-footnote"><span class="footnote-heart">♥</span> Hecho con muchísimo amor, solo para ti</div>
+          </div>
+          <div class="hero-visual" aria-label="Ilustración de una luna y un corazón entre estrellas">
+            <div class="orb-halo halo-outer"></div>
+            <div class="orb-halo halo-inner"></div>
+            <div class="orb-main">
+              <span class="orb-text-small">mi universo favorito</span>
+              <span class="orb-heart" aria-hidden="true">♡</span>
+              <span class="orb-name">Anahí</span>
+              <span class="orb-text-bottom">eres tú ✦</span>
+            </div>
+            <div class="visual-sticker sticker-1"><span>✧</span> Eres magia</div>
+            <div class="visual-sticker sticker-2"><span>♡</span> Mi persona favorita</div>
+            <span class="float-symbol float-1" aria-hidden="true">✳</span>
+            <span class="float-symbol float-2" aria-hidden="true">✧</span>
+            <span class="float-symbol float-3" aria-hidden="true">✦</span>
+          </div>
+          <a href="#pastel" class="scroll-cue" aria-label="Desplazarse al pastel"><span>DESLIZA PARA DESCUBRIR</span><span class="scroll-line"></span></a>
+        </section>
+
+        <div class="ticker" aria-hidden="true"><div class="ticker-track">
+          <span>FELIZ CUMPLEAÑOS <b>✳</b> TE AMO MUCHO <b>✳</b> UN DÍA TAN BONITO COMO TÚ <b>✳</b></span><span>FELIZ CUMPLEAÑOS <b>✳</b> TE AMO MUCHO <b>✳</b> UN DÍA TAN BONITO COMO TÚ <b>✳</b></span><span>FELIZ CUMPLEAÑOS <b>✳</b> TE AMO MUCHO <b>✳</b> UN DÍA TAN BONITO COMO TÚ <b>✳</b></span><span>FELIZ CUMPLEAÑOS <b>✳</b> TE AMO MUCHO <b>✳</b> UN DÍA TAN BONITO COMO TÚ <b>✳</b></span>
+        </div></div>
+
+        <section class="section wish-section" id="pastel" aria-labelledby="wish-title">
+          <div class="container wish-layout">
+            <div class="wish-info reveal">
+              <p class="section-kicker"><span>01 /</span> PIDE UN DESEO</p>
+              <h2 class="section-heading" id="wish-title">Cierra los ojos.<br /><em>Pide algo bonito.</em></h2>
+              <p class="section-description">Hay deseos que se soplan y otros que se cumplen poquito a poquito. Hoy quiero que ambos se hagan realidad para ti.</p>
+              <div class="wish-instructions"><span class="instruction-icon">✧</span><p><strong>Tu pequeño ritual</strong><br />Toca el botón para apagar las velitas y pedir tu deseo.</p></div>
+              <button type="button" id="blow-candles" class="button button-primary">Soplar las velitas <span aria-hidden="true">✧</span></button>
+              <button type="button" id="relight-candles" class="reset-link" hidden>↻ Encender de nuevo</button>
+            </div>
+            <div class="cake-stage reveal" id="cake-stage">
+              <div class="cake-stars" aria-hidden="true"><i>✧</i><i>✦</i><i>✧</i><i>⋆</i><i>✧</i></div>
+              <div class="cake-aura" aria-hidden="true"></div>
+              <div class="cake-art" role="img" aria-label="Pastel lila de cumpleaños con cinco velas encendidas">
+                <div class="candles" id="candles">
+                  <div class="candle candle-1"><span class="flame"></span><span class="wick"></span></div><div class="candle candle-2"><span class="flame"></span><span class="wick"></span></div><div class="candle candle-3"><span class="flame"></span><span class="wick"></span></div><div class="candle candle-4"><span class="flame"></span><span class="wick"></span></div><div class="candle candle-5"><span class="flame"></span><span class="wick"></span></div>
+                </div>
+                <div class="cake-top"><span class="sprinkle sp1"></span><span class="sprinkle sp2"></span><span class="sprinkle sp3"></span><span class="sprinkle sp4"></span><span class="sprinkle sp5"></span></div>
+                <div class="cake-layer cake-layer-top"><div class="icing-drips"></div><span class="cake-highlight"></span></div>
+                <div class="cake-layer cake-layer-bottom"><div class="icing-drips bottom-drips"></div><span class="cake-highlight"></span></div>
+                <div class="cake-plate"></div><div class="cake-shadow"></div>
+              </div>
+              <div class="wish-result" id="wish-result" aria-live="polite"><span>✨</span><strong>¡Deseo enviado al universo!</strong><small>Que la vida te regale todo lo bonito que mereces.</small></div>
+              <div class="stage-caption">HECHO DE DULZURA, ESTRELLITAS Y AMOR</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section reasons-section" id="razones" aria-labelledby="reasons-title">
+          <div class="container">
+            <div class="section-topline reveal"><p class="section-kicker"><span>02 /</span> PEQUEÑOS DETALLES</p><span class="topline-deco">✧ &nbsp; ✧ &nbsp; ✧</span></div>
+            <div class="reasons-heading reveal"><h2 class="section-heading" id="reasons-title">Hay mil razones.<br /><em>Estas son algunas.</em></h2><p class="section-description">Cada tarjeta guarda algo que me encanta de ti. Tócalas y descubre lo que hay detrás.</p></div>
+            <div class="reasons-grid">
+              <button type="button" class="reason-card reveal" data-reason-card aria-pressed="false" aria-label="Descubrir razón 01: Tu sonrisa" style="--card-index:0">
+                  <span class="reason-card-inner">
+                    <span class="reason-face reason-front"><span class="reason-top"><span>01 / 06</span><span class="reason-plus">↗</span></span><span class="reason-icon" aria-hidden="true">☀</span><span class="reason-bottom"><strong>Tu sonrisa</strong><small>Esa luz tan tuya</small></span></span>
+                    <span class="reason-face reason-back"><span class="back-label">UNA COSITA QUE AMO DE TI</span><span class="reason-back-text">Porque una sonrisa tuya es capaz de hacer que cualquier día sea un poquito más bonito.</span><span class="back-bottom">♡ &nbsp; Toca para volver</span></span>
+                  </span>
+                </button>
+<button type="button" class="reason-card reveal" data-reason-card aria-pressed="false" aria-label="Descubrir razón 02: Tu esencia" style="--card-index:1">
+                  <span class="reason-card-inner">
+                    <span class="reason-face reason-front"><span class="reason-top"><span>02 / 06</span><span class="reason-plus">↗</span></span><span class="reason-icon" aria-hidden="true">✦</span><span class="reason-bottom"><strong>Tu esencia</strong><small>Simplemente tú</small></span></span>
+                    <span class="reason-face reason-back"><span class="back-label">UNA COSITA QUE AMO DE TI</span><span class="reason-back-text">Porque no necesitas parecerte a nadie: tu manera de ser es una de mis cosas favoritas en el mundo.</span><span class="back-bottom">♡ &nbsp; Toca para volver</span></span>
+                  </span>
+                </button>
+<button type="button" class="reason-card reveal" data-reason-card aria-pressed="false" aria-label="Descubrir razón 03: Tu cariño" style="--card-index:2">
+                  <span class="reason-card-inner">
+                    <span class="reason-face reason-front"><span class="reason-top"><span>03 / 06</span><span class="reason-plus">↗</span></span><span class="reason-icon" aria-hidden="true">♡</span><span class="reason-bottom"><strong>Tu cariño</strong><small>Mi lugar favorito</small></span></span>
+                    <span class="reason-face reason-back"><span class="back-label">UNA COSITA QUE AMO DE TI</span><span class="reason-back-text">Porque en los pequeños gestos se siente un amor enorme, y contigo cada detalle vale oro.</span><span class="back-bottom">♡ &nbsp; Toca para volver</span></span>
+                  </span>
+                </button>
+<button type="button" class="reason-card reveal" data-reason-card aria-pressed="false" aria-label="Descubrir razón 04: Tu compañía" style="--card-index:3">
+                  <span class="reason-card-inner">
+                    <span class="reason-face reason-front"><span class="reason-top"><span>04 / 06</span><span class="reason-plus">↗</span></span><span class="reason-icon" aria-hidden="true">☾</span><span class="reason-bottom"><strong>Tu compañía</strong><small>Todo se siente mejor</small></span></span>
+                    <span class="reason-face reason-back"><span class="back-label">UNA COSITA QUE AMO DE TI</span><span class="reason-back-text">Porque contigo incluso un instante sencillo puede convertirse en un recuerdo precioso.</span><span class="back-bottom">♡ &nbsp; Toca para volver</span></span>
+                  </span>
+                </button>
+<button type="button" class="reason-card reveal" data-reason-card aria-pressed="false" aria-label="Descubrir razón 05: Tu alegría" style="--card-index:4">
+                  <span class="reason-card-inner">
+                    <span class="reason-face reason-front"><span class="reason-top"><span>05 / 06</span><span class="reason-plus">↗</span></span><span class="reason-icon" aria-hidden="true">❋</span><span class="reason-bottom"><strong>Tu alegría</strong><small>Magia cotidiana</small></span></span>
+                    <span class="reason-face reason-back"><span class="back-label">UNA COSITA QUE AMO DE TI</span><span class="reason-back-text">Porque tienes esa forma especial de llenar de vida los momentos que compartimos.</span><span class="back-bottom">♡ &nbsp; Toca para volver</span></span>
+                  </span>
+                </button>
+<button type="button" class="reason-card reveal" data-reason-card aria-pressed="false" aria-label="Descubrir razón 06: Lo que viene" style="--card-index:5">
+                  <span class="reason-card-inner">
+                    <span class="reason-face reason-front"><span class="reason-top"><span>06 / 06</span><span class="reason-plus">↗</span></span><span class="reason-icon" aria-hidden="true">∞</span><span class="reason-bottom"><strong>Lo que viene</strong><small>Mil historias más</small></span></span>
+                    <span class="reason-face reason-back"><span class="back-label">UNA COSITA QUE AMO DE TI</span><span class="reason-back-text">Porque me emociona imaginar todos los sueños, risas y aventuras que todavía nos esperan.</span><span class="back-bottom">♡ &nbsp; Toca para volver</span></span>
+                  </span>
+                </button>
+
+            </div>
+            <div class="reasons-footer reveal"><span class="little-star">✷</span> Y todavía me faltan muchísimas por descubrir...</div>
+          </div>
+        </section>
+
+        <section class="section sky-section" id="deseo" aria-labelledby="sky-title">
+          <div class="sky-starfield" id="wish-sky" aria-hidden="true"></div>
+          <div class="container sky-content reveal">
+            <div class="sky-symbol" aria-hidden="true">✧</div>
+            <p class="section-kicker">UN PEQUEÑO RINCÓN DEL UNIVERSO</p>
+            <h2 class="section-heading" id="sky-title">Escribe un deseo.<br /><em>Yo pongo las estrellas.</em></h2>
+            <p class="section-description">Puede ser algo enorme o algo pequeñito. Lo importante es que sea tuyo.</p>
+            <form class="wish-form" id="wish-form">
+              <label class="sr-only" for="wish-input">Tu deseo</label>
+              <input id="wish-input" name="wish" type="text" maxlength="100" autocomplete="off" placeholder="Este año deseo..." required />
+              <button class="button button-primary" type="submit">Lanzar deseo <span aria-hidden="true">↗</span></button>
+            </form>
+            <div class="sky-hint" id="sky-hint">Los deseos se guardan en este cielo durante tu visita. ♡</div>
+            <div class="wishes-list" id="wishes-list" aria-live="polite"></div>
+          </div>
+        </section>
+
+        <section class="section letter-section" id="carta" aria-labelledby="letter-title">
+          <div class="container letter-layout">
+            <div class="letter-intro reveal">
+              <p class="section-kicker"><span>03 /</span> DE MÍ, PARA TI</p>
+              <h2 class="section-heading" id="letter-title">Hay cosas que<br /><em>se dicen con el corazón.</em></h2>
+              <p class="section-description">Y hay palabras que se guardan para alguien realmente especial. Estas son tuyas, Anahí.</p>
+              <div class="letter-mini-note">Una carta que siempre podrás volver a leer. <span>♡</span></div>
+            </div>
+            <div class="letter-interaction reveal">
+              <div class="letter-envelope" id="letter-envelope" aria-hidden="true">
+                <div class="envelope-letter"><span>Para Anahí,</span><b>con amor ♡</b></div>
+                <div class="envelope-back"></div>
+                <div class="envelope-flap"></div>
+                <div class="envelope-front"></div>
+                <div class="envelope-seal">♡</div>
+              </div>
+              <button class="button button-primary envelope-button" id="open-letter" type="button" aria-expanded="false" aria-controls="letter-paper">Abrir mi carta <span aria-hidden="true">↗</span></button>
+              <p class="envelope-hint">Guardé unas palabras especiales para ti</p>
+            </div>
+          </div>
+          <div class="container letter-paper-container" id="letter-paper" hidden>
+            <article class="letter-paper" tabindex="-1" aria-label="Carta de cumpleaños para Anahí">
+              <div class="letter-paper-decoration">✧</div>
+              <p class="letter-date">EN TU DÍA ESPECIAL</p>
+              <h3>Para mi persona favorita,</h3>
+              <p class="letter-salutation">Mi Anahí:</p>
+<p class="">Hoy quiero recordarte algo que quizá no te digo lo suficiente: lo especial que eres para mí. Tienes una forma única de iluminar mis días, de hacer que hasta los momentos más sencillos se sientan diferentes.</p>
+<p class="">Me encanta tu manera de ser, tu sonrisa y todo eso que te hace tan tú. Y aunque ninguna palabra alcanza para explicar lo mucho que significas para mí, hoy quiero intentarlo con un pequeño regalo hecho con cariño.</p>
+<p class="">Deseo que este nuevo año de tu vida esté lleno de aventuras, sueños cumplidos, abrazos sinceros y razones para sonreír. Y, si me dejas, quiero estar a tu lado para celebrar cada una de esas alegrías.</p>
+<p class="">Feliz cumpleaños, mi amor. Gracias por existir y por ser parte de mi vida.</p>
+              <p class="letter-signature">Te amo muchísimo. ♡</p>
+              <span class="letter-corner" aria-hidden="true">♡</span>
+              <button type="button" class="letter-close" id="close-letter">Cerrar carta ↑</button>
+            </article>
+          </div>
+        </section>
+
+        <section class="final-section" id="regalo" aria-labelledby="final-title">
+          <div class="final-glow" aria-hidden="true"></div>
+          <div class="container final-inner reveal">
+            <p class="section-kicker">Y ANTES DE TERMINAR...</p>
+            <div class="gift-wrap" id="gift-wrap" aria-hidden="true"><div class="gift-lid"><span class="gift-bow bow-left"></span><span class="gift-bow bow-right"></span><span class="gift-knot"></span></div><div class="gift-body"><span class="gift-ribbon"></span></div><div class="gift-sparkles">✦ ✧ ♡ ✧</div></div>
+            <h2 class="section-heading" id="final-title">Un último <em>regalito.</em></h2>
+            <p class="final-copy">Porque una sorpresa nunca es suficiente cuando se trata de ti.</p>
+            <button class="button button-primary" id="open-gift" type="button">Abrir regalo <span aria-hidden="true">♡</span></button>
+            <div class="gift-message" id="gift-message" hidden aria-live="polite"><span class="gift-message-star">✦</span><h3>Mi regalo favorito es compartir la vida contigo.</h3><p>Feliz cumpleaños, Anahí. Que nunca te falten motivos para brillar.</p><strong>Te amo ♡</strong></div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer container"><span class="footer-brand">para Anahí <b>♡</b></span><span>Con todo mi amor, para ti ♡</span><a href="#top" aria-label="Volver arriba">Volver a las estrellas ↑</a></footer>
+    </div>
+    <script defer src="./experience.js"></script>
+  </body>
+</html>
