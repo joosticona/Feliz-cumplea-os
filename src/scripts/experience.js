@@ -13,8 +13,8 @@ function makeStars(container, count) {
     star.className = 'star';
     star.style.left = `${Math.random() * 100}%`;
     star.style.top = `${Math.random() * 100}%`;
-    star.style.setProperty('--star-size', `${Math.random() * 2.3 + .7}px`);
-    star.style.setProperty('--star-o', `${Math.random() * .65 + .15}`);
+    star.style.setProperty('--star-size', `${Math.random() * 2.3 + 0.7}px`);
+    star.style.setProperty('--star-o', `${Math.random() * 0.65 + 0.15}`);
     star.style.setProperty('--star-dur', `${Math.random() * 5 + 2}s`);
     star.style.animationDelay = `${Math.random() * -9}s`;
     fragment.append(star);
@@ -35,23 +35,30 @@ window.addEventListener('resize', handleScroll);
 handleScroll();
 
 if ('IntersectionObserver' in window) {
-  const revealObserver = new IntersectionObserver((entries, observer) => {
-    for (const entry of entries) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target);
+  const revealObserver = new IntersectionObserver(
+    (entries, observer) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
       }
-    }
-  }, { rootMargin: '0px 0px -55px 0px', threshold: .07 });
-  $$('.reveal').forEach(element => revealObserver.observe(element));
+    },
+    { rootMargin: '0px 0px -55px 0px', threshold: 0.07 }
+  );
+  $$('.reveal').forEach((element) => revealObserver.observe(element));
 } else {
-  $$('.reveal').forEach(element => element.classList.add('is-visible'));
+  $$('.reveal').forEach((element) => element.classList.add('is-visible'));
 }
 if (window.matchMedia('(pointer: fine)').matches && !prefersReducedMotion) {
-  window.addEventListener('pointermove', event => {
-    document.documentElement.style.setProperty('--pointer-x', `${event.clientX}px`);
-    document.documentElement.style.setProperty('--pointer-y', `${event.clientY}px`);
-  }, { passive: true });
+  window.addEventListener(
+    'pointermove',
+    (event) => {
+      document.documentElement.style.setProperty('--pointer-x', `${event.clientX}px`);
+      document.documentElement.style.setProperty('--pointer-y', `${event.clientY}px`);
+    },
+    { passive: true }
+  );
 }
 
 // Confeti liviano: lo limpiamos al acabar para no consumir memoria.
@@ -65,10 +72,13 @@ function burstConfetti(amount = 90) {
     piece.className = 'confetti';
     piece.style.setProperty('--x', `${Math.random() * 100}%`);
     piece.style.setProperty('--size', `${Math.random() * 6 + 5}px`);
-    piece.style.setProperty('--color', confettiColors[Math.floor(Math.random() * confettiColors.length)]);
+    piece.style.setProperty(
+      '--color',
+      confettiColors[Math.floor(Math.random() * confettiColors.length)]
+    );
     piece.style.setProperty('--duration', `${Math.random() * 2 + 3}s`);
-    piece.style.setProperty('--delay', `${Math.random() * .65}s`);
-    piece.style.setProperty('--drift', `${(Math.random() - .5) * 300}px`);
+    piece.style.setProperty('--delay', `${Math.random() * 0.65}s`);
+    piece.style.setProperty('--drift', `${(Math.random() - 0.5) * 300}px`);
     piece.style.setProperty('--rotate', `${Math.random() * 360}deg`);
     piece.addEventListener('animationend', () => piece.remove(), { once: true });
     fragment.append(piece);
@@ -90,14 +100,41 @@ function notify(message) {
 // Melodía clásica de cumpleaños en notas, generada con Web Audio.
 // No depende de enlaces, MP3, bibliotecas o servicios externos.
 const noteFrequencies = {
-  G4: 392, A4: 440, B4: 493.88, C5: 523.25, D5: 587.33,
-  E5: 659.25, F5: 698.46, G5: 783.99,
+  G4: 392,
+  A4: 440,
+  B4: 493.88,
+  C5: 523.25,
+  D5: 587.33,
+  E5: 659.25,
+  F5: 698.46,
+  G5: 783.99,
 };
 const birthdayNotes = [
-  ['G4', .29], ['G4', .20], ['A4', .50], ['G4', .52], ['C5', .50], ['B4', .93],
-  ['G4', .29], ['G4', .20], ['A4', .50], ['G4', .52], ['D5', .50], ['C5', .95],
-  ['G4', .28], ['G4', .22], ['G5', .52], ['E5', .52], ['C5', .50], ['B4', .50], ['A4', .90],
-  ['F5', .28], ['F5', .22], ['E5', .52], ['C5', .52], ['D5', .52], ['C5', 1.1],
+  ['G4', 0.29],
+  ['G4', 0.2],
+  ['A4', 0.5],
+  ['G4', 0.52],
+  ['C5', 0.5],
+  ['B4', 0.93],
+  ['G4', 0.29],
+  ['G4', 0.2],
+  ['A4', 0.5],
+  ['G4', 0.52],
+  ['D5', 0.5],
+  ['C5', 0.95],
+  ['G4', 0.28],
+  ['G4', 0.22],
+  ['G5', 0.52],
+  ['E5', 0.52],
+  ['C5', 0.5],
+  ['B4', 0.5],
+  ['A4', 0.9],
+  ['F5', 0.28],
+  ['F5', 0.22],
+  ['E5', 0.52],
+  ['C5', 0.52],
+  ['D5', 0.52],
+  ['C5', 1.1],
 ];
 let audioContext;
 let masterGain;
@@ -117,27 +154,30 @@ function scheduleTone(frequency, when, duration) {
   const overGain = audioContext.createGain();
   over.type = 'sine';
   over.frequency.setValueAtTime(frequency * 2, when);
-  overGain.gain.setValueAtTime(.018, when);
-  overGain.gain.exponentialRampToValueAtTime(.001, when + duration + .25);
-  voiceGain.gain.setValueAtTime(.0001, when);
-  voiceGain.gain.exponentialRampToValueAtTime(.095, when + .025);
-  voiceGain.gain.exponentialRampToValueAtTime(.0001, when + duration + .24);
+  overGain.gain.setValueAtTime(0.018, when);
+  overGain.gain.exponentialRampToValueAtTime(0.001, when + duration + 0.25);
+  voiceGain.gain.setValueAtTime(0.0001, when);
+  voiceGain.gain.exponentialRampToValueAtTime(0.095, when + 0.025);
+  voiceGain.gain.exponentialRampToValueAtTime(0.0001, when + duration + 0.24);
   oscillator.connect(voiceGain).connect(masterGain);
   over.connect(overGain).connect(masterGain);
   oscillator.start(when);
   over.start(when);
-  oscillator.stop(when + duration + .27);
-  over.stop(when + duration + .27);
+  oscillator.stop(when + duration + 0.27);
+  over.stop(when + duration + 0.27);
 }
 function playSong(currentLoop) {
   if (!musicEnabled || currentLoop !== loopId || !audioContext) return;
-  let at = audioContext.currentTime + .08;
+  let at = audioContext.currentTime + 0.08;
   for (const [note, duration] of birthdayNotes) {
-    scheduleTone(noteFrequencies[note], at, duration * .82);
+    scheduleTone(noteFrequencies[note], at, duration * 0.82);
     at += duration;
   }
   // Deja una pausa entre vueltas para que la música no resulte insistente.
-  musicTimer = window.setTimeout(() => playSong(currentLoop), (at - audioContext.currentTime + 2.5) * 1000);
+  musicTimer = window.setTimeout(
+    () => playSong(currentLoop),
+    (at - audioContext.currentTime + 2.5) * 1000
+  );
 }
 async function setMusic(enabled) {
   const AudioCtx = window.AudioContext || window.webkitAudioContext;
@@ -148,7 +188,7 @@ async function setMusic(enabled) {
   if (enabled && !audioContext) {
     audioContext = new AudioCtx();
     masterGain = audioContext.createGain();
-    masterGain.gain.value = .36;
+    masterGain.gain.value = 0.36;
     masterGain.connect(audioContext.destination);
   }
   musicEnabled = enabled;
@@ -173,7 +213,9 @@ async function setMusic(enabled) {
     }
   }
 }
-soundButton.addEventListener('click', () => { void setMusic(!musicEnabled); });
+soundButton.addEventListener('click', () => {
+  void setMusic(!musicEnabled);
+});
 document.addEventListener('visibilitychange', () => {
   if (document.hidden && audioContext && musicEnabled) {
     clearTimeout(musicTimer);
@@ -181,7 +223,10 @@ document.addEventListener('visibilitychange', () => {
     void audioContext.suspend();
   } else if (!document.hidden && audioContext && musicEnabled) {
     const current = ++loopId;
-    void audioContext.resume().then(() => playSong(current)).catch(() => {});
+    void audioContext
+      .resume()
+      .then(() => playSong(current))
+      .catch(() => {});
   }
 });
 
@@ -189,13 +234,23 @@ document.addEventListener('visibilitychange', () => {
 const overlay = $('#welcome-overlay');
 const startButton = $('#start-experience');
 document.body.classList.add('overlay-open');
-startButton.addEventListener('click', () => {
-  overlay.classList.add('is-leaving');
-  document.body.classList.remove('overlay-open');
-  overlay.setAttribute('aria-hidden', 'true');
-  void setMusic(true);
-  setTimeout(() => { overlay.hidden = true; burstConfetti(90); }, prefersReducedMotion ? 50 : 950);
-}, { once: true });
+startButton.addEventListener(
+  'click',
+  () => {
+    overlay.classList.add('is-leaving');
+    document.body.classList.remove('overlay-open');
+    overlay.setAttribute('aria-hidden', 'true');
+    void setMusic(true);
+    setTimeout(
+      () => {
+        overlay.hidden = true;
+        burstConfetti(90);
+      },
+      prefersReducedMotion ? 50 : 950
+    );
+  },
+  { once: true }
+);
 
 // Apaga y vuelve a encender todas las velas.
 const stage = $('#cake-stage');
@@ -205,7 +260,9 @@ const wishResult = $('#wish-result');
 blowButton.addEventListener('click', () => {
   if (stage.classList.contains('candles-out')) return;
   stage.classList.add('candles-out');
-  stage.querySelector('.cake-art')?.setAttribute('aria-label', 'Pastel lila de cumpleaños con las velas apagadas');
+  stage
+    .querySelector('.cake-art')
+    ?.setAttribute('aria-label', 'Pastel lila de cumpleaños con las velas apagadas');
   blowButton.disabled = true;
   blowButton.textContent = '¡Deseo pedido! ♡';
   wishResult.classList.add('show');
@@ -215,7 +272,9 @@ blowButton.addEventListener('click', () => {
 });
 relightButton.addEventListener('click', () => {
   stage.classList.remove('candles-out');
-  stage.querySelector('.cake-art')?.setAttribute('aria-label', 'Pastel lila de cumpleaños con cinco velas encendidas');
+  stage
+    .querySelector('.cake-art')
+    ?.setAttribute('aria-label', 'Pastel lila de cumpleaños con cinco velas encendidas');
   blowButton.disabled = false;
   blowButton.innerHTML = 'Soplar las velitas <span aria-hidden="true">✧</span>';
   relightButton.hidden = true;
@@ -223,7 +282,7 @@ relightButton.addEventListener('click', () => {
 });
 
 // Tarjetas giratorias, accesibles por teclado gracias al elemento <button>.
-$$('[data-reason-card]').forEach(card => {
+$$('[data-reason-card]').forEach((card) => {
   card.addEventListener('click', () => {
     const flipped = card.classList.toggle('is-flipped');
     card.setAttribute('aria-pressed', String(flipped));
@@ -235,7 +294,7 @@ const wishForm = $('#wish-form');
 const wishInput = $('#wish-input');
 const wishList = $('#wishes-list');
 const sky = $('#wish-sky');
-wishForm.addEventListener('submit', event => {
+wishForm.addEventListener('submit', (event) => {
   event.preventDefault();
   const wish = wishInput.value.trim().replace(/\s+/g, ' ');
   if (!wish) {
@@ -275,12 +334,15 @@ letterButton.addEventListener('click', () => {
   letterButton.setAttribute('aria-expanded', 'true');
   letterButton.textContent = 'Leer de nuevo ♡';
   clearTimeout(letterTimer);
-  letterTimer = setTimeout(() => {
-    letterPaper.hidden = false;
-    requestAnimationFrame(() => letterPaper.scrollIntoView({ behavior: smooth, block: 'start' }));
-    $('#letter-paper article')?.focus({ preventScroll: true });
-    burstConfetti(35);
-  }, prefersReducedMotion ? 0 : 650);
+  letterTimer = setTimeout(
+    () => {
+      letterPaper.hidden = false;
+      requestAnimationFrame(() => letterPaper.scrollIntoView({ behavior: smooth, block: 'start' }));
+      $('#letter-paper article')?.focus({ preventScroll: true });
+      burstConfetti(35);
+    },
+    prefersReducedMotion ? 0 : 650
+  );
 });
 letterClose.addEventListener('click', () => {
   clearTimeout(letterTimer);
